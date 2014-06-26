@@ -6,16 +6,17 @@ var request = require('request');
 
 fs.readFile('../archives/sites.txt', function (err, html) {
   if (err) {
-    throw err; 
+    throw err;
   }
   var str = html.toString();
-  var urlArray = str.split('\n');
+  var urlTextArray = str.split('\n');
   var found = false;
-  var filesArray = fs.readdirSync('../archives/sites');
-  for(var i = 0; i < urlArray.length; i++){
-    var site = 'http://' + urlArray[i];
-    for(var j = 0; j < filesArray.length; j++){
-      if(filesArray[j] === urlArray[i]){
+  var sitesArray = fs.readdirSync('../archives/sites');
+
+  for(var i = 0; i < urlTextArray.length; i++){
+    //var site = 'http://' + urlArray[i];
+    for(var j = 0; j < sitesArray.length; j++){
+      if(sitesArray[j] === urlTextArray[i]){
         found = true;
         console.log(found);
         break;
@@ -31,9 +32,9 @@ fs.readFile('../archives/sites.txt', function (err, html) {
   //     //console.log(body) // Print the google web page.
   //   }
   // });
-  http.createServer(function(request, response) {  
-    response.writeHeader(200, {"Content-Type": "text/html"});  
-    //response.write(html);  
-    response.end();  
+  http.createServer(function(request, response) {
+    response.writeHeader(200, {"Content-Type": "text/html"});
+    //response.write(html);
+    response.end();
   }).listen(8000);
 });

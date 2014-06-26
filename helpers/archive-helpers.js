@@ -25,10 +25,17 @@ exports.initialize = function(pathsObj){
 // The following function names are provided to you to suggest how you might
 // modularize your code. Keep it clean!
 
+// Returns an array of line items (URLs) read from sites.txt file.
 exports.readListOfUrls = function(){
+  fs.readFile('../archives/sites.txt', function (err, html) {
+debugger;
+    if (err) { throw err; }
+    return html.toString().split('\n');
+  });
 };
 
 exports.isUrlInList = function(){
+
 };
 
 exports.addUrlToList = function(){
